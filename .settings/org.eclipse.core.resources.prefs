@@ -1,0 +1,6 @@
+eclipse.preferences.version=1
+encoding//src/main/java/cowell/vn/Main.java=UTF-8
+encoding//src/main/java/cowell/vn/api/backlog4j/IssueUtils.java=UTF-8
+encoding//src/main/java/cowell/vn/api/google/GSheetUtils.java=UTF-8
+encoding//src/main/java/cowell/vn/service/QuartzScheduleWriteToGSheet.java=UTF-8
+encoding//src/main/java/cowell/vn/service/ScheduleWriteToGSheet.java=UTF-8
