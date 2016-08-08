@@ -32,6 +32,10 @@ dependencies {
 	//Google Mail API lib
 	compile 'com.google.apis:google-api-services-gmail:v1-rev47-1.22.0'
 	
+	// https://mvnrepository.com/artifact/javax.mail/mail
+	compile group: 'javax.mail', name: 'mail', version: '1.4.7'
+	
+	
 	//Quartz for Job Schedule
 	compile group: 'org.quartz-scheduler', name: 'quartz', version: '2.2.1'
 
