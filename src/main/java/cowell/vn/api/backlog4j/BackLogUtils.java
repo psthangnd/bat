@@ -1,5 +1,12 @@
 package cowell.vn.api.backlog4j;
 
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+import java.util.Map;
+
+import cowell.vn.api.google.UserUtils;
 import cowell.vn.constant.BackLogConstant;
 import cowell.vn.util.DateUtils;
 
@@ -7,10 +14,21 @@ import cowell.vn.util.DateUtils;
 public class BackLogUtils {
 	
 	public static void main(String[] args) {
+		/*//try send 'N' time
+		for(int i=0; i<BackLogConstant.N_TIME_TRY; i++){
+			try{
+				Integer[] backlogData = BackLogUtils.getDataForTask1();
+				System.out.println(backlogData.toString());
+				i = BackLogConstant.N_TIME_TRY;
+			} catch(Exception e){
+				e.printStackTrace();
+			}
+		}*/
+		
 		//try send 'N' time
 		for(int i=0; i<BackLogConstant.N_TIME_TRY; i++){
 			try{
-				Integer[] backlogData = BackLogUtils.getDataFromBackLog();
+				List<List<Object>> backlogData = BackLogUtils.getDataForTask2();
 				System.out.println(backlogData.toString());
 				i = BackLogConstant.N_TIME_TRY;
 			} catch(Exception e){
@@ -19,16 +37,33 @@ public class BackLogUtils {
 		}
 	}
 	
+	public static List<List<Object>> getDataForTask2() throws IOException{
+		return getDataForTask2(DateUtils.getCurDate());
+	}
+	public static List<List<Object>> getDataForTask2(String date) throws IOException{
+		List<List<Object>> data = new ArrayList<List<Object>>();
+		
+		for(Object userId : UserUtils.getListUserFromSheet()){
+			Map<Date, Object> mapData = IssueUtils.getDataForUser(userId.toString());
+			
+			//List<Object> data1 = new ArrayList<Object>();
+			//data1.add(val);
+			//data.add(data1);
+		}
+		
+		return data;
+	}
+	
 	/*
 	 * 
 	 * Status: when internet slow, throw IOException!!!
 	 * Exception in thread "main" com.nulabinc.backlog4j.BacklogAPIException: java.io.IOException: Stream closed
 	 *
 	 * */
-	public static Integer[] getDataFromBackLog(){
-		return getDataFromBackLog(DateUtils.getCurDate());
+	public static Integer[] getDataForTask1(){
+		return getDataForTask1(DateUtils.getCurDate());
 	}
-	public static Integer[] getDataFromBackLog(String date){
+	public static Integer[] getDataForTask1(String date){
 		//1. project: S_GWS
 		System.out.println("==============Project: GWS+Pricing==============");
 		int intHassei = IssueUtils.getHasseiList(BackLogConstant.GWS_PRICING_PROJECT, 

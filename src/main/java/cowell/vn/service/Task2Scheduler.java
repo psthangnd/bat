@@ -7,14 +7,14 @@ import org.quartz.JobExecutionContext;
 import org.quartz.JobExecutionException;
 
 import cowell.vn.api.backlog4j.BackLogUtils;
-import cowell.vn.api.google.GSheetUtils;
+import cowell.vn.api.google.Task2Utils;
 import cowell.vn.constant.BackLogConstant;
 import cowell.vn.constant.GoogleConstant;
 
-public class QuartzJobScheduler implements Job{
+public class Task2Scheduler implements Job{
 	Integer[] backlogData;
 	
-	public QuartzJobScheduler() {
+	public Task2Scheduler() {
 	}
 	
 	@Override
@@ -29,10 +29,11 @@ public class QuartzJobScheduler implements Job{
 		//try send 'N' time
 		for(int i=0; i<BackLogConstant.N_TIME_TRY; i++){
 			try{
-				backlogData = BackLogUtils.getDataFromBackLog();
+				backlogData = BackLogUtils.getDataForTask1();
 				i = BackLogConstant.N_TIME_TRY;
 			} catch(Exception e){
 				e.printStackTrace();
+				System.err.println("Try again!!!");
 			}
 		}
 		
@@ -43,11 +44,12 @@ public class QuartzJobScheduler implements Job{
 				//try send 'N' time
 				for(int i=0; i<GoogleConstant.N_TIME_TRY; i++){
 					try {
-						GSheetUtils.writeDataToSheet(backlogData);
+						Task2Utils.writeDataToSheet(backlogData);
 						i = GoogleConstant.N_TIME_TRY;
 						System.out.println("Write data into GSheet completed!");
 					} catch (IOException ie) {
 						ie.printStackTrace();
+						System.err.println("Try again!!!");
 					}
 				}
 			}

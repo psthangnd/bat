@@ -1,12 +1,12 @@
 package cowell.vn;
 
-import cowell.vn.service.QuartzScheduleWriteToGSheet;
+import cowell.vn.service.Task1ScheduleWriteToGSheet;
 
 
 public class Main {
 	
 	public static void main(String... arg){
-		new QuartzScheduleWriteToGSheet();
+		new Task1ScheduleWriteToGSheet();
 	}
 	
 }

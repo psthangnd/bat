@@ -14,11 +14,11 @@ import org.quartz.impl.StdSchedulerFactory;
 
 import cowell.vn.constant.ApplicationConstant;
 
-public class QuartzScheduleWriteToGSheet{
-	private static final String GROUP_NAME = "WRITE_GSHEET";
+public class Task2ScheduleWriteToGSheet{
+	private static final String GROUP_NAME = "Member_Effort";
 	
 	
-	public QuartzScheduleWriteToGSheet() {
+	public Task2ScheduleWriteToGSheet() {
 		Scheduler scheduler = null;
 		try{
 			SchedulerFactory schedFact = new StdSchedulerFactory();
@@ -26,11 +26,11 @@ public class QuartzScheduleWriteToGSheet{
 			scheduler.start();
 	
 			// define the job and tie it to our HelloJob class
-			JobBuilder jobBuilder = JobBuilder.newJob(QuartzJobScheduler.class);
+			JobBuilder jobBuilder = JobBuilder.newJob(Task1Scheduler.class);
 	
 			JobDetail jobDetail = jobBuilder
-					.usingJobData("example", "cowell.vn.service.QuartzJobScheduler")
-					.withIdentity("myJob", "group1").build();
+					.usingJobData("example", "cowell.vn.service.Task2Scheduler")
+					.withIdentity("myJob2", "group2").build();
 	
 			System.out.println("Current time: " + new Date());
 	
@@ -52,7 +52,7 @@ public class QuartzScheduleWriteToGSheet{
 	public static Trigger fireAt() {
 		Trigger trigger = TriggerBuilder.newTrigger()
 				.withIdentity("fireAt", GROUP_NAME)
-				.withSchedule(cronSchedule("Fire at...", ApplicationConstant.CRON_EXPRESSION))
+				.withSchedule(cronSchedule("Fire at...", ApplicationConstant.CRON_EXPRESSION_TASK2))
 				.build();
 		return trigger;
 	}
