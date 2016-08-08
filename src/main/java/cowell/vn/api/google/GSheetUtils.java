@@ -25,10 +25,10 @@ public class GSheetUtils {
 	final static String spreadsheetId_test = "1Xrxb2e2fbnK7Xlf07mCfWdcwU530oB9-2sUSB8zP5CQ";	//"BAT_test" file
 	final static String spreadsheetId_test2 = "1AXRQ7DWUXonT4wim5wlX0CrJwUa_dTFpqi_DEnlWL6E";	//"Test_20160804" file
 	
-	//final static int sheetId = 295702833;
-	//final static String sheetName = "2016/08";
-	final static int sheetId = 0;
-	final static String sheetName = "Sheet1";
+	final static int sheetId = 295702833;
+	final static String sheetName = "2016/08";
+	//final static int sheetId = 0;
+	//final static String sheetName = "Sheet1";
 	
 	final static int startRowIndex = 39;
 	final static int endRowIndex = 47;
@@ -147,7 +147,7 @@ public class GSheetUtils {
 		batchUpdateRequest.setValueInputOption("RAW");
 		batchUpdateRequest.setData(oList);
 
-		service.spreadsheets().values().batchUpdate(spreadsheetId_test2, batchUpdateRequest).execute();
+		service.spreadsheets().values().batchUpdate(spreadsheetId, batchUpdateRequest).execute();
 	}
 	
 	@Deprecated

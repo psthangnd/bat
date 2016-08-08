@@ -45,6 +45,7 @@ public class QuartzJobScheduler implements Job{
 					try {
 						GSheetUtils.writeDataToSheet(backlogData);
 						i = GoogleConstant.N_TIME_TRY;
+						System.out.println("Write data into GSheet completed!");
 					} catch (IOException ie) {
 						ie.printStackTrace();
 					}

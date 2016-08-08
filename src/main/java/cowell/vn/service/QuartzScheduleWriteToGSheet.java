@@ -19,9 +19,10 @@ public class QuartzScheduleWriteToGSheet{
 	
 	
 	public QuartzScheduleWriteToGSheet() {
+		Scheduler scheduler = null;
 		try{
 			SchedulerFactory schedFact = new StdSchedulerFactory();
-			Scheduler scheduler = schedFact.getScheduler();
+			scheduler = schedFact.getScheduler();
 			scheduler.start();
 	
 			// define the job and tie it to our HelloJob class
@@ -38,6 +39,12 @@ public class QuartzScheduleWriteToGSheet{
 			scheduler.scheduleJob(jobDetail, fireAt());
 		} catch(SchedulerException se){
 			se.printStackTrace();
+		} catch(Exception ex){
+			try {
+				scheduler.shutdown();
+			} catch (SchedulerException e) {
+				e.printStackTrace();
+			}
 		}
 	}
 	
