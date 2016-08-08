@@ -43,8 +43,8 @@ public class BackLogUtils {
 	public static List<List<Object>> getDataForTask2(String date) throws IOException{
 		List<List<Object>> data = new ArrayList<List<Object>>();
 		
-		for(Object userId : UserUtils.getListUserFromSheet()){
-			Map<Date, Object> mapData = IssueUtils.getDataForUser(userId.toString());
+		for(Object userId : UserUtils.getListUserIdFromSheet()){
+			Map<String, Map<Date, Object>> mapData = IssueUtils.getDataForUser(userId.toString());
 			
 			//List<Object> data1 = new ArrayList<Object>();
 			//data1.add(val);

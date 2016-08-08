@@ -14,7 +14,7 @@ import cowell.vn.util.DateUtils;
 public class Task2Utils {
 	final static String spreadsheetId = "147mi90mVdV1WISYcF2Ipwwhu1Ygju3zkTsvos4Z3ips";
 	final static int sheetId = 90718708;
-	final static String sheetName = "Member_Effort";
+	final static String sheetName = "Member_Effort2";
 	
 	final static int startRowIndex = 4;
 	final static int endRowIndex = 35;
@@ -22,13 +22,22 @@ public class Task2Utils {
 
 	public static void main(String[] args) {
 		try {
-			writeDataToSheet(new Integer[]{1,2,3,4,5});
+			List<List<Object>> values = new ArrayList<List<Object>>();
+			
+			for(int i=4; i<=35; i++){
+				List<Object> lstRow = new ArrayList<Object>();
+				for(int j=1; j<=5; j++)
+					lstRow.add(j);
+				values.add(lstRow);
+			}
+			
+			writeDataToSheet(values);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 	}
 
-	public static void writeDataToSheet(Integer[] values) throws IOException{
+	public static void writeDataToSheet(List<List<Object>> values) throws IOException{
 		String date = DateUtils.getCurDate();
 		
 		writeDataBaseToSheet(date);
@@ -57,17 +66,15 @@ public class Task2Utils {
 		service.spreadsheets().values().batchUpdate(spreadsheetId, batchUpdateRequest).execute();
 	}
 	
-	public static void writeDataEffortToSheet(Integer[] values, String date) throws IOException{
+	public static void writeDataEffortToSheet(List<List<Object>> values, String date) throws IOException{
 		String range = getRange(sheetName, date);
 		
 		// authorized
 		Sheets service = GoogleAuth.getSheetsService();
 		
-		List<List<Object>> arrData = getData(values);
-
 		ValueRange oRange = new ValueRange();
 		oRange.setRange(range);
-		oRange.setValues(arrData);
+		oRange.setValues(values);
 
 		List<ValueRange> oList = new ArrayList<>();
 		oList.add(oRange);

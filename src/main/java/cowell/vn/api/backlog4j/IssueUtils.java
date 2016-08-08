@@ -29,8 +29,8 @@ public class IssueUtils {
 	public static List<List<Object>> getData4Task2() throws IOException{
 		List<List<Object>> data = new ArrayList<List<Object>>();
 		
-		for(Object userId : UserUtils.getListUserFromSheet()){
-			Map<Date, Object> mapData = getDataForUser(userId.toString());
+		for(Object userId : UserUtils.getListUserIdFromSheet()){
+			Map<String, Map<Date, Object>> mapData = getDataForUser(userId.toString());
 			
 			//List<Object> data1 = new ArrayList<Object>();
 			//data1.add(val);
@@ -39,17 +39,19 @@ public class IssueUtils {
 		
 		return data;
 	}
-	public static Map<Date, Object> getDataForUser(String userId){
-		Map<Date, Object> mapData = new HashMap<Date, Object>();
+	public static Map<String, Map<Date, Object>> getDataForUser(String userId){
+		Map<String, Map<Date, Object>> mapIssueData = new HashMap<String, Map<Date, Object>>();
 		ResponseList<Issue> lstIssue = getIssuesWithUser(userId.toString());
 		
 		for (Issue issue : lstIssue) {
-			getDataForIssue(mapData, issue);
+			mapIssueData.put(issue.getIdAsString(), getDataForIssue(issue));
 		}
 		
-		return mapData;
+		return mapIssueData;
 	}
-	public static void getDataForIssue(Map<Date, Object> mapData, Issue issue){
+	public static Map<Date, Object> getDataForIssue(Issue issue){
+		Map<Date, Object> mapData = new HashMap<Date, Object>();
+		
 		ResponseList<IssueComment> lstComment = backlog.getIssueComments(issue.getId());
 		for (IssueComment issueComment : lstComment) {
 			//1.updated
@@ -64,6 +66,8 @@ public class IssueUtils {
 				}
 			}
 		}
+		
+		return mapData;
 	}
 	public static ResponseList<Issue> getIssuesWithUser(String userId){
 		GetIssuesParams params = new GetIssuesParams(Arrays.asList());

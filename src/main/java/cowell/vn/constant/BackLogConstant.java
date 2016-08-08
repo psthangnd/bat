@@ -2,7 +2,8 @@ package cowell.vn.constant;
 
 public class BackLogConstant {
 	public static String SPACE_KEY = "gulliver";	//"gulliver.backlog.jp";
-	public static String API_KEY = "IQiuHp0JEMdHJ0WRCIc9ix9oCmKwUyzzevaswTCtHpR2GYGp93s1H2i8mqfGbL8O";
+	//public static String API_KEY = "IQiuHp0JEMdHJ0WRCIc9ix9oCmKwUyzzevaswTCtHpR2GYGp93s1H2i8mqfGbL8O";	//Học
+	public static String API_KEY = "GfPaeO0NyUUeyzJN553oW5WQ446M706MD3FA2GIryIMeMpbet0eCvY1GRx6BwJVo";	//C.Hưng
 	
 	
 	//project: S_GWS

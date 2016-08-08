@@ -26,7 +26,7 @@ public class Task2ScheduleWriteToGSheet{
 			scheduler.start();
 	
 			// define the job and tie it to our HelloJob class
-			JobBuilder jobBuilder = JobBuilder.newJob(Task1Scheduler.class);
+			JobBuilder jobBuilder = JobBuilder.newJob(Task2Scheduler.class);
 	
 			JobDetail jobDetail = jobBuilder
 					.usingJobData("example", "cowell.vn.service.Task2Scheduler")

@@ -13,21 +13,20 @@ public class UserUtils {
 	static BacklogClient backlog = BackLogAuth.buildBacklogClient();
 	
 	public static void main(String[] args) {
-		//getListUserFromAPI();
-		getUser("S_HungNX");
+		getListUserIdFromAPI();
 	}
 	
 	public static User getUser(String userId){
 		return backlog.getUser(userId);
 	}
 	
-	public static List<Object> getListUserFromAPI(){
+	public static List<Object> getListUserIdFromAPI(){
 		List<Object> lstUser = new ArrayList<Object>();
 		
 		ResponseList<User> rlu = backlog.getUsers();
 		for (User user : rlu) {
-			lstUser.add(user.getName());
-			System.out.print(user.getName() + "\t");
+			lstUser.add(user.getId());
+			System.out.println(user.getId() + "\t" + user.getName());
 		}
 		
 		return lstUser;

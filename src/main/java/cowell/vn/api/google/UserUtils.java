@@ -13,8 +13,8 @@ public class UserUtils {
 	//https://docs.google.com/spreadsheets/d/147mi90mVdV1WISYcF2Ipwwhu1Ygju3zkTsvos4Z3ips/edit#gid=90718708
 	final static String spreadsheetId = "147mi90mVdV1WISYcF2Ipwwhu1Ygju3zkTsvos4Z3ips";	//"backlog_auto" file
 	final static int sheetId = 90718708;
-	final static String sheetName = "Member_Effort";
-	final static String range = sheetName + "!C4:C";
+	final static String sheetName = "Member_Effort2";
+	final static String range = sheetName + "!B4:B";
 	
 	final static int startRowIndex = 4;
 	final static int endRowIndex = 35;
@@ -22,13 +22,13 @@ public class UserUtils {
 	
 	public static void main(String[] args) {
 		try {
-			getListUserFromSheet();
+			getListUserIdFromSheet();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 	}
 	
-	public static List<Object> getListUserFromSheet() throws IOException{
+	public static List<Object> getListUserIdFromSheet() throws IOException{
 		List<Object> lstUser = new ArrayList<Object>();
 		
 		// authorized
