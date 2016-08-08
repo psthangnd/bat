@@ -15,4 +15,6 @@ public class BackLogConstant {
 	public static String[] INTERNATIONAL_PROJECT = {"1073821360", "1073837869"};
 	public static String[] INTERNATIONAL_PROJECT_ISSUETYPE = {"1074238894", "1074238918"};
 	
+	public static final int N_TIME_TRY = 3;
+	
 }

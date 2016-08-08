@@ -12,6 +12,8 @@ import org.quartz.Trigger;
 import org.quartz.TriggerBuilder;
 import org.quartz.impl.StdSchedulerFactory;
 
+import cowell.vn.constant.ApplicationConstant;
+
 public class QuartzScheduleWriteToGSheet{
 	private static final String GROUP_NAME = "WRITE_GSHEET";
 	
@@ -33,17 +35,17 @@ public class QuartzScheduleWriteToGSheet{
 	
 			// Tell quartz to schedule the job using our trigger
 			// Fire at current time + 1 min every day
-			scheduler.scheduleJob(jobDetail, fireAt12pmEveryDay());
+			scheduler.scheduleJob(jobDetail, fireAt());
 		} catch(SchedulerException se){
 			se.printStackTrace();
 		}
 	}
 	
-	// Fire between 10AM and 3PM every day
-	public static Trigger fireAt12pmEveryDay() {
+	// Fire at 12pm every day
+	public static Trigger fireAt() {
 		Trigger trigger = TriggerBuilder.newTrigger()
-				.withIdentity("fireAt12pmEveryDay", GROUP_NAME)
-				.withSchedule(cronSchedule("Fire at 12pm every day", "0 50 16 ? * *"))
+				.withIdentity("fireAt", GROUP_NAME)
+				.withSchedule(cronSchedule("Fire at...", ApplicationConstant.CRON_EXPRESSION))
 				.build();
 		return trigger;
 	}

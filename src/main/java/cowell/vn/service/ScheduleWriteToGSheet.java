@@ -5,7 +5,7 @@ import java.util.Calendar;
 import java.util.Timer;
 import java.util.TimerTask;
 
-import cowell.vn.Main;
+import cowell.vn.api.backlog4j.BackLogUtils;
 import cowell.vn.api.google.GSheetUtils;
 
 public class ScheduleWriteToGSheet extends TimerTask{
@@ -61,7 +61,7 @@ public class ScheduleWriteToGSheet extends TimerTask{
 	
 	private void executeWriteData(){
 		//1. get data from BackLog API
-		int[] backlogData = Main.getDataFromBackLog();
+		Integer[] backlogData = BackLogUtils.getDataFromBackLog();
 		
 		//2. create thread try write into Google Sheet
 		new Runnable() {

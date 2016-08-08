@@ -10,4 +10,6 @@ public class GoogleConstant {
 	
 	public static final List<String> SCOPES = Arrays.asList(SheetsScopes.SPREADSHEETS);
 	
+	public static final int N_TIME_TRY = 3;
+	
 }
